@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+    <configuration-properties file="mule-artifact.properties"/>
+    <http:request-config basePath="/api/v1" doc:id="4c362c06-ea02-4309-8d97-5c9a8d9638a1" doc:name="Mobile-eapi-url" doc:timestamp="1673410884902" name="mobile-eapi-url">
+        <http:request-connection host="${mobile-eapi-url.Connection.host.value}"/>
+    </http:request-config>
+    <http:listener-config doc:id="5265ebd9-5a03-46db-9650-67fb938a0b31" doc:name="CloudHub HTTP" doc:timestamp="1673402857789" name="cloudhub_http">
+        <http:listener-connection host="${cloudhub_http.Connection.host.value}" port="${cloudhub_http.Connection.port.value}"/>
+    </http:listener-config>
+    <flow doc:id="408d8aae-cd12-4e20-b823-80ba9be6051f" doc:name="Mobile-eapi" doc:timestamp="1673398127734" name="mobile-eapi">
+        <http:listener allowedMethods="POST" config-ref="cloudhub_http" doc:id="66ef78de-84d9-471f-bb64-9db833c0bc42" doc:name="Listener" doc:timestamp="1673402829207" path="/api/v1/mobile-eapi"/>
+        <http:request config-ref="mobile-eapi-url" doc:id="1df008f1-737e-4cf2-b7b2-2c9a6b64c032" doc:name="Request" doc:timestamp="1673406861239" method="POST" path="/account-papi"/>
+    </flow>
+</mule>

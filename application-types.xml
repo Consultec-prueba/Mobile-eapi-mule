@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="Client" format="json">
+      <types:example format="json"><![CDATA[{
+  "debitAccount": {
+    "accountNumber": "14472687"
+  },
+  "savingsAmount": 38.13,
+  "customer": {
+    "id": "2"
+  }
+}]]></types:example>
+    </types:type>
+    <types:type name="Custom Type" format="json">
+      <types:example format="json"><![CDATA[{
+    "StatusInfo":{
+  "StatusCode": 1,
+  "StatusDesc": ""
+}}]]></types:example>
+    </types:type>
+    <types:type name="Travel Account" format="json">
+      <types:example format="json"><![CDATA[{
+  "accountNumber": "88944436",
+  "debitAccount": [
+    {
+      "accountNumber": "14472687"
+    }
+  ],
+  "savingsAmount": 87.13,
+  "customer": [
+    {
+      "id": 2
+    }
+  ],
+  "id": 3,
+    "StatusInfo":{
+  "StatusCode": 1,
+  "StatusDesc": ""
+}
+}]]></types:example>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#66ef78de-84d9-471f-bb64-9db833c0bc42">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="Client"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#1df008f1-737e-4cf2-b7b2-2c9a6b64c032">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="Client"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="Travel Account"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#5e67ed32-0c64-4f96-ad25-056d21deb31d">
+    <types:processor-declaration/>
+  </types:enrichment>
+</types:mule>

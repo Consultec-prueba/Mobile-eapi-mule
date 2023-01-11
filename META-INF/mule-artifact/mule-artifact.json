@@ -1,0 +1,27 @@
+{
+  "configs": [
+    "mule-config.xml"
+  ],
+  "secureProperties": [
+    "cloudhub_http.Connection.host.value",
+    "cloudhub_http.Connection.port.value",
+    "mobile-eapi-url.Connection.host.value"
+  ],
+  "redeploymentEnabled": true,
+  "name": "Mobile-eapi",
+  "minMuleVersion": "4.3.0",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedResources": [
+        "log4j2.xml",
+        "mule-artifact.properties"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}
